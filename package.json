@@ -2,7 +2,7 @@
   "name": "cumulocity-asset-properties-widget-plugin",
   "version": "1.1.1",
   "description": "Asset properties",
-  "author": "Amarjyoti Raj - Software AG, IOT-Apps R&D",
+  "author": "Cumulocity GmbH",
   "license": "Apache 2.0",
   "scripts": {
     "clean": "yarn clean:dist && yarn clean:node_modules",
