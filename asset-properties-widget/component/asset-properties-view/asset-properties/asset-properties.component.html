@@ -1,39 +1,41 @@
 <ng-container>
-  <div class="card-block">
-    <div class="text-center" *ngIf="isLoading">
+  <div class="card-block" *ngIf="isLoading">
+    <div class="text-center" >
       <c8y-loading></c8y-loading>
     </div>
-
-    <ng-container *ngIf="!isLoading">
-      <div
-        class="card m-b-8"
+  </div>
+  
+  <ng-container *ngIf="!isLoading">
+    <div class="card-block d-col gap-8 p-t-0">
+      <fieldset
+        class="c8y-fieldset m-0"
         title="{{ prop.description | translate }}"
         *ngFor="let prop of customProperties"
-        [ngClass]="{ 'card-highlight': prop.isEdit }"
+        [ngClass]="{ 'highlight': prop.isEdit }"
       >
-        <div class="card-block" [ngClass]="{ 'p-b-0': prop.isEdit }">
-          <div class="d-flex p-b-8 a-i-center" *ngIf="!prop.isEdit">
-            <p
-              class="text-medium text-truncate"
-              title="{{ prop?.label | translate }}"
-              data-cy="asset-properties-label"
-            >
-              {{ prop?.label | translate }}
-            </p>
-            <button
-              class="btn btn-dot m-l-auto text-12"
-              [attr.aria-label]="'Edit' | translate"
-              tooltip="{{ 'Edit' | translate }}"
-              data-cy="asset-properties-edit-icon"
-              type="button"
-              [delay]="500"
-              (click)="toggleEdit(prop)"
-              *ngIf="prop.isEditable || prop.isEditable === undefined"
-              [disabled]="isEditDisabled"
-            >
-              <i c8yIcon="pencil"></i>
-            </button>
-          </div>
+        <legend class="d-flex a-i-center">
+          <span
+            class=""
+            title="{{ prop?.label | translate }}"
+            data-cy="asset-properties-label"
+          >
+            {{ prop?.label | translate }}
+          </span>
+          <button
+            class="btn-dot m-l-8 text-12"
+            [attr.aria-label]="'Edit' | translate"
+            tooltip="{{ 'Edit' | translate }}"
+            data-cy="asset-properties-edit-icon"
+            placement="bottom"
+            type="button"
+            [delay]="500"
+            (click)="toggleEdit(prop)"
+            *ngIf="(prop.isEditable || prop.isEditable === undefined) && !prop.isEdit"
+            [disabled]="isEditDisabled"
+          >
+            <i c8yIcon="pencil"></i>
+          </button>
+        </legend>
           <c8y-asset-properties-item
             #assetProps
             [file]="prop.file"
@@ -44,6 +46,7 @@
             [isEdit]="prop.isEdit"
             [jsonSchema]="prop.jsonSchema"
             [isStandardProperty]="prop.isStandardProperty"
+            [ngClass]="{'p-t-4 p-b-8 d-block': !prop.isEdit}"
           ></c8y-asset-properties-item>
           <div
             *ngIf="
@@ -58,8 +61,7 @@
               [form]="assetProps.form"
             ></c8y-asset-location>
           </div>
-        </div>
-        <div class="card-footer p-t-0" *ngIf="prop.isEdit">
+        <div class="separator-top p-t-8 p-b-8" *ngIf="prop.isEdit">
           <button
             class="btn btn-default btn-sm"
             title="{{ 'Cancel' | translate }}"
@@ -80,7 +82,7 @@
             {{ 'Save' | translate }}
           </button>
         </div>
-      </div>
-    </ng-container>
-  </div>
+      </fieldset>
+    </div>
+  </ng-container>
 </ng-container>
