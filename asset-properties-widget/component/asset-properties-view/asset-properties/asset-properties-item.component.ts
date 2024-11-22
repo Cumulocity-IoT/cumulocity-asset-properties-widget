@@ -111,6 +111,7 @@ export class AssetPropertiesItemComponent implements AssetPropertiesItem, OnChan
       const fieldConfig = this.c8yJsonSchemaService.toFieldConfig(this.jsonSchema as JSONSchema7, {
         map(mappedField: FormlyFieldConfig) {
           const result: FormlyFieldConfig = mappedField;
+          mappedField.props.label = undefined
           if (mappedField.key === 'name') {
             mappedField.validators = {
               ...{ validation: [MaxLengthValidator.maxLength(assetNameMaxLength)] }

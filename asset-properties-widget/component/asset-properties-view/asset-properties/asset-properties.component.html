@@ -52,14 +52,14 @@
             *ngIf="
               prop.key === 'c8y_Position' &&
               prop.jsonSchema.properties[prop.key].properties.lat &&
-              prop.jsonSchema.properties[prop.key].properties.lng
+              prop.jsonSchema.properties[prop.key].properties.lng && prop.isEdit
             "
           >
             <c8y-asset-location
               [locationMO]="asset"
               [isEdit]="prop.isEdit"
               [form]="assetProps.form"
-            ></c8y-asset-location>
+            ></c8y-asset-location> 
           </div>
         <div class="separator-top p-t-8 p-b-8" *ngIf="prop.isEdit">
           <button
