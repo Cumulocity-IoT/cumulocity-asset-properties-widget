@@ -108,10 +108,10 @@ export class AssetPropertiesItemComponent implements AssetPropertiesItem, OnChan
   private resolveJsonSchema() {
     const assetNameMaxLength: number = 254;
     if (this.jsonSchema) {
+      this.jsonSchema = { properties: this.jsonSchema.properties };
       const fieldConfig = this.c8yJsonSchemaService.toFieldConfig(this.jsonSchema as JSONSchema7, {
         map(mappedField: FormlyFieldConfig) {
           const result: FormlyFieldConfig = mappedField;
-          mappedField.props.label = undefined
           if (mappedField.key === 'name') {
             mappedField.validators = {
               ...{ validation: [MaxLengthValidator.maxLength(assetNameMaxLength)] }
