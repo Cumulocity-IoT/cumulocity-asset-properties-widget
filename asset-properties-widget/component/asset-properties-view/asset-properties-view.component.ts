@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { IAlarm, IEvent, IManagedObject, InventoryService } from '@c8y/client';
 import {
   AlarmRealtimeService,
@@ -19,6 +19,8 @@ interface ComputedPropertyObject {
 @Component({
   selector: 'c8y-asset-properties-view',
   templateUrl: './asset-properties-view.component.html',
+  styleUrls: ['./asset-properties-view.component.less'],
+  encapsulation: ViewEncapsulation.None,
   providers: [ManagedObjectRealtimeService, MeasurementRealtimeService]
 })
 export class AssetPropertiesViewComponent implements OnInit {

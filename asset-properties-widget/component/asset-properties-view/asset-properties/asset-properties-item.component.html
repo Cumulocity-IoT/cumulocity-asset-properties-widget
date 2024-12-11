@@ -29,7 +29,7 @@
   </ng-container>
   <ng-container *ngSwitchCase="'object'">
     <ul *ngFor="let prop of complex">
-      <span *ngIf="prop.complex">
+      <ng-container *ngIf="prop.complex">
         <label class="m-b-0 m-r-8 text-truncate" title="{{ prop.label | translate }}">
           {{ prop.label | translate }}
         </label>
@@ -38,10 +38,10 @@
           [complex]="prop.complex"
           [isStandardProperty]="prop.isStandardProperty"
         ></c8y-asset-properties-item>
-      </span>
+      </ng-container>
     </ul>
     <ul class="list-unstyled c8y-custom-properties">
-      <span *ngFor="let prop of complex; let i = index">
+      <ng-container *ngFor="let prop of complex; let i = index">
         <li
           *ngIf="!prop.complex"
           [ngClass]="{
@@ -67,7 +67,7 @@
             ></c8y-asset-properties-item>
           </span>
         </li>
-      </span>
+      </ng-container>
     </ul>
   </ng-container>
   <ng-container *ngSwitchCase="type === 'number' || type === 'boolean' ? type : ''">
