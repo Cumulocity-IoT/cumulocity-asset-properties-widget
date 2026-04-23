@@ -1,3 +1,21 @@
+# This repository is archived and no longer maintained
+
+This repository contained the source code for **Cumulocity Asset Properties Widget Plugin**, previously made available for early feedback and customization.
+
+## This is no longer supported
+
+Active development has ended and no further updates, or support will be provided for this codebase.
+
+## What should I use instead?
+
+Use the **Asset properties widget** plugin available on **Cumulocity platform extensions**.
+
+It provides all the functionality you need directly within the platform — no custom code required.
+
+## Questions?
+
+If you have questions, refer to the platform's official documentation or support channels.
+
 # Cumulocity Asset Properties Widget Plugin [<img width="35" src="https://user-images.githubusercontent.com/32765455/211497905-561e9197-18b9-43d5-a023-071d3635f4eb.png"/>](https://github.com/SoftwareAG/cumulocity-asset-properties-widget/releases/download/sag-pkg-asset-properties-widget-1.0.1/sag-pkg-asset-properties-widget-1.0.1.zip)
 
 This Asset Properties Widget is the Cumulocity module federation plugin created using c8ycli. This plugin can be used in Application Builder or Cockpit. It fetches Inventory data based on the Asset or Devices and displays the same in a widget.
