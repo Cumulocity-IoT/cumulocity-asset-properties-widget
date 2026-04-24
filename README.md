@@ -1,4 +1,4 @@
-# This repository is archived and no longer maintained
+# ${ \color{red}This \ repository \ is \ archived \ and \ no \ longer \ maintained }$
 
 This repository contained the source code for **Cumulocity Asset Properties Widget Plugin**, previously made available for early feedback and customization.
 
@@ -8,7 +8,7 @@ Active development has ended and no further updates, or support will be provided
 
 ## What should I use instead?
 
-Use the **Asset properties widget** plugin available on **Cumulocity platform extensions**.
+Use the **Asset properties widget** plugin available on **Cumulocity platform Extensions**.
 
 It provides all the functionality you need directly within the platform — no custom code required.
 
