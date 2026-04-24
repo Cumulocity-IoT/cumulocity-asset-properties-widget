@@ -85,7 +85,7 @@
       "key": "sag-pkg-asset-properties-widget-application-key",
       "globalTitle": "Asset properties widget",
       "tabsHorizontal": true,
-      "isPackage": false,
+      "isPackage": true,
       "noAppSwitcher": true,
       "package": "plugin",
       "requiredPlatformVersion": ">=1018.0.0",
