@@ -82,6 +82,20 @@ declare global {
        * Usage: createEvent(requestBody);
        */
       createEvent(request: any): void;
+
+      /**
+       * This command is being used to clone the application and install asset properties widget plugin the application clonned..
+       */
+      installPlugin(): void;
+
+      /**
+       * This command is being used to delete the clonned application.
+       */
+      deleteCustomApplication(): void;
+      /**
+       * This command is being used to delete all the widgets in clonned application.
+       */
+      deleteAllWidgets(): void;
     }
   }
 }
@@ -265,6 +279,82 @@ Cypress.Commands.add('addAssetToDevice', (parentDevice, asset) => {
           managedObject: { id: `${assetId}` }
         }
       });
+    });
+  });
+});
+
+var customAppId = null;
+Cypress.Commands.add('installPlugin', () => {
+  //get cockpit id
+  cy.apiRequest({
+    url: `/application/applicationsByName/cockpit`,
+    method: 'GET'
+  }).then((response: any) => {
+    const appId = response.body.applications[0].id;
+    cy.log(appId);
+
+    //clone app id
+    cy.apiRequest({
+      url: `/application/applications/${appId}/clone`,
+      method: 'POST'
+    }).then((response: any) => {
+      customAppId = response.body.id;
+      cy.log(customAppId);
+
+      //get extension
+      cy.apiRequest({
+        url: `/application/applications?availability=SHARED&type=HOSTED&pageSize=2000`,
+        method: 'GET'
+      }).then((response: any) => {
+        const applications = response.body.applications;
+        var applicationVersions = null;
+        for (var i = 0; i < applications.length; i++) {
+          if (applications[i].contextPath === 'sag-pkg-asset-properties-widget') {
+            applicationVersions = applications[i].manifest.version;
+            cy.log(applicationVersions);
+            break;
+          }
+        }
+        var key = 'sag-pkg-asset-properties-widget@' + applicationVersions;
+        //install plugin
+        cy.apiRequest({
+          url: `/application/applications/${customAppId}`,
+          method: 'PUT',
+          body: {
+            id: customAppId,
+            config: {
+              remotes: { [key]: ['AssetPropertiesWidgetModule'] }
+            }
+          }
+        });
+      });
+    });
+  });
+});
+
+Cypress.Commands.add('deleteCustomApplication', () => {
+  //get cockpit id
+  cy.apiRequest({
+    url: `/application/applications/${customAppId}`,
+    method: 'DELETE'
+  });
+});
+
+Cypress.Commands.add('deleteAllWidgets', () => {
+  cy.apiRequest({
+    url: `/inventory/managedObjects?fragmentType=c8y_Dashboard!name!home-cockpit1&pageSize=1`,
+    method: 'GET'
+  }).then((response: any) => {
+    const widgetId = response.body.managedObjects[0].id;
+    cy.log(widgetId);
+    cy.apiRequest({
+      url: `/inventory/managedObjects/${widgetId}`,
+      method: 'PUT',
+      body: {
+        c8y_Dashboard: {},
+        id: widgetId,
+        c8y_Global: {}
+      }
     });
   });
 });
