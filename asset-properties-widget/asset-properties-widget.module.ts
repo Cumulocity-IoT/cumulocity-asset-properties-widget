@@ -23,6 +23,7 @@ import { ComputedPropertyConfigComponent } from './component/asset-properties-co
 import { DatapointSelectorModule } from '@c8y/ngx-components/datapoint-selector';
 import { ComputedPropertyLastMeasurementConfigComponent } from './component/asset-properties-config/computed-asset-property/properties/last-measurement-config.component';
 import { AssetPropertiesViewService } from './component/asset-properties-view/asset-properties-view.service';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AssetPropertiesViewService } from './component/asset-properties-view/as
     RealtimeModule,
     SubAssetsModule,
     DatapointSelectorModule,
+    TooltipModule,
   ],
   providers: [
     AssetPropertiesViewService,
